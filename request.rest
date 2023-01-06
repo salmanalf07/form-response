@@ -1,0 +1,19 @@
+###
+GET http://localhost:3000/login/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsIm5hbWUiOiJNLiBTQUxNQU4gQUwtRkFSSVNJIiwiZW1haWwiOiJtLmZhcmlzaUBiaW51cy5lZHUiLCJpYXQiOjE2NjAzNjA2MzgsImV4cCI6MTY2MDM2MDY1OH0.2GEet8xWDcgIU9ZVNGda_a-h7kTxq9ARzPx_zOYRJv4
+
+
+###
+POST http://localhost:3000/login/POST 
+Content-Type: application/json
+
+{
+    "email" : "m.farisi@binus.edu",
+    "password" : "tr1sthaMaxx"
+}
+
+###
+GET  http://localhost:3000/login/token 
+
+###
+DELETE http://localhost:3000/login/logout 

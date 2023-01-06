@@ -1,0 +1,306 @@
+<% include ../partials/header %>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar layout-without-menu">
+    <div class="layout-container">
+      <!-- Layout container -->
+      <div class="layout-page">
+        <!-- Navbar -->
+
+        <!-- / Navbar -->
+
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+          <!-- Content -->
+
+          <div class="container-xl flex-grow-1 container-p-y">
+            <!-- Basic Layout -->
+            <div class="row">
+              <div class="col-xl">
+                <div class="card mb-4">
+                  <div class="card-header text-center">
+                    <h4 class="mb-0">EVENT QUISTIONNAIRE</h4>
+                  </div>
+                </div>
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <form method="POST" id="quistForm">
+                      <div class="mb-3">
+                        <label class="form-label" for="nama_anda"
+                          >Nama Anda</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="name"
+                          name="name"
+                          value="<%= name %>"
+                          placeholder="Masukan Nama Anda"
+                          aria-label="Masukan Nama Anda"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="nama_anda"
+                          >Unit Kerja</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="work_unit"
+                          name="work_unit"
+                          value="<%= work_unit %>"
+                          placeholder="Masukan Unit Kerja"
+                          aria-label="Masukan Unit Kerja"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="nama_anda">Email</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="email"
+                          name="email"
+                          value="<%= email %>"
+                          placeholder="Masukan Email"
+                          aria-label="Masukan Email"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="nama_kegiatan"
+                          >Nama Kegiatan</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="nama_kegiatan"
+                          name="nama_kegiatan"
+                          value="<%= nama_kegiatan %>"
+                          placeholder="Masukan Nama Kegiatan"
+                          aria-label="Masukan Nama Kegiatan"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label
+                          class="form-label"
+                          for="basic-icon-default-company"
+                          >Tanggal Kegiatan</label
+                        >
+                        <input
+                          class="form-control"
+                          id="date_kegiatan"
+                          name="date_kegiatan"
+                          type="date"
+                          value="<%= date_kegiatan %>"
+                          id="html5-date-input"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-phone"
+                          >Ruangan Yang Digunakan</label
+                        >
+                        <select
+                          id="ruanganId"
+                          name="ruanganId"
+                          class="form-select"
+                          required
+                        >
+                          <option value="-">--PILIH--</option>
+                          <% for(var i = 0; i< ruangan.length; i++) {%>
+                          <option
+                            value="<%= ruangan[i].id%>"
+                            <%= ruanganId === ruangan[i].id ? 'selected' :'' %>
+                          >
+                            <%= ruangan[i].nama_ruangan%>
+                          </option>
+                          <% } %>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <h4>
+                          Mohon memberikan penilaian berdasarkan pengalaman pada
+                          saat kegiatan yang di dukung oleh IT BINUS@Bekasi.
+                          Penilaian mendekati angka 1 berarti Tidak Puas dan
+                          mendekati angka 5 berarti Sangat Puas.
+                        </h4>
+                      </div>
+                      <div class="mb-3">
+                        <label
+                          class="form-label"
+                          for="basic-icon-default-message"
+                          >Hardware/Software yang disiapkan sesuai dengan
+                          kebutuhan saat kegiatan</label
+                        >
+                        <input
+                          class="form-control"
+                          id="ques_1"
+                          name="ques_1"
+                          value="<%= ques_1 %>"
+                          type="number"
+                          min="1"
+                          max="5"
+                          placeholder="1 - 5"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label
+                          class="form-label"
+                          for="basic-icon-default-message"
+                          >Hardware/Software yang digunakan dapat berfungsi
+                          dengan baik saat kegiatan</label
+                        >
+                        <input
+                          class="form-control"
+                          id="ques_2"
+                          name="ques_2"
+                          value="<%= ques_2 %>"
+                          type="number"
+                          min="1"
+                          max="5"
+                          placeholder="1 - 5"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label
+                          class="form-label"
+                          for="basic-icon-default-message"
+                          >IT memberikan tanggapan dengan cepat saat
+                          kegiatan</label
+                        >
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="ques_3"
+                          name="ques_3"
+                          value="<%= ques_3 %>"
+                          min="1"
+                          max="5"
+                          placeholder="1 - 5"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label
+                          class="form-label"
+                          for="basic-icon-default-message"
+                          >IT dapat memastikan seluruh Hardware/Software
+                          berfungsi dengan baik saat kegiatan</label
+                        >
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="ques_4"
+                          name="ques_4"
+                          value="<%= ques_4 %>"
+                          min="1"
+                          max="5"
+                          placeholder="1 - 5"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label
+                          class="form-label"
+                          for="basic-icon-default-message"
+                          >IT secara inisiatif membantu jika ada kendala pada
+                          saat kegiatan</label
+                        >
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="ques_5"
+                          name="ques_5"
+                          value="<%= ques_5 %>"
+                          min="1"
+                          max="5"
+                          placeholder="1 - 5"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label
+                          class="form-label"
+                          for="basic-icon-default-message"
+                          >Secara keseluruhan layanan yang diberikan dari IT
+                          sesuai dengan harapan</label
+                        >
+                        <input
+                          class="form-control"
+                          type="number"
+                          id="ques_6"
+                          name="ques_6"
+                          value="<%= ques_6 %>"
+                          min="1"
+                          max="5"
+                          placeholder="1 - 5"
+                          required
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label
+                          class="form-label"
+                          for="basic-icon-default-message"
+                          >Saran anda untuk peningkatan layanan tim IT Univ.
+                          Bekasi</label
+                        >
+                        <textarea
+                          class="form-control"
+                          rows="3"
+                          id="ques_7"
+                          name="ques_7"
+                          required
+                        >
+<%= ques_7 %>
+                        </textarea>
+                      </div>
+                      <% if(but_send === "true"){ %>
+                      <button
+                        id="saveButton"
+                        type="submit"
+                        class="btn btn-primary"
+                      >
+                        Send
+                      </button>
+                      <% }%>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- / Content -->
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<%- include ../partials/footer %> <%- include ../partials/js %>
+<script type="text/javascript" src="/assets/js/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+  $("#quistForm").on("submit", function (e) {
+    e.preventDefault();
+    // console.log($("#saveButton").data("act"));
+    $.ajax({
+      url: "eventQuistionnaire/create",
+      method: "POST",
+      data: $("#quistForm").serialize(),
+      dataType: "JSON",
+      beforeSend: function () {
+        $("#saveButton").attr("disabled", "disabled");
+      },
+      success: function (data) {
+        $("#saveButton").attr("disabled", false);
+        reset_form("quistForm");
+        // window.location.reload();
+        window.location.replace("/eventQuistionnaire/succes");
+      },
+    });
+  });
+</script>

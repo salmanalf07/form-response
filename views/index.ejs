@@ -1,0 +1,25 @@
+<% include ./partials/header %> <%- include ./partials/sidebar %> <%- include
+./partials/navbar %>
+<!-- Content wrapper -->
+<div class="content-wrapper">
+  <!-- Content -->
+  <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="row">
+      <% for (let i = 1 ; i <= Object.keys(cart).length ; i++){%>
+      <div class="col-md-6 col-xl-4">
+        <div class="card bg-primary text-white mb-3">
+          <div class="card-header">Quistionnaire <%= [i] %></div>
+          <div class="card-body">
+            <h5 class="card-title text-white">
+              <%= cart[i].quest.toFixed(2) %>
+            </h5>
+            <p class="card-text"><%= cart[i].question %></p>
+          </div>
+        </div>
+      </div>
+      <%}%>
+    </div>
+  </div>
+  <!-- / Content -->
+  <%- include ./partials/footer %> <%- include ./partials/js %>
+</div>
