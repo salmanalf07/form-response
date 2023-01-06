@@ -27,9 +27,9 @@ module.exports = {
         title: "Dashboard",
         page_title: "",
         page_name: "Dashboard",
-        // name: req.session.user.name,
-        isAuthenticated: req.session.isAuthenticated,
-        name: req.session.account?.username,
+        name: req.session.user.name,
+        // isAuthenticated: req.session.isAuthenticated,
+        // name: req.session.account?.username,
         cart,
       });
       // res.json(Object.keys(cart).length);

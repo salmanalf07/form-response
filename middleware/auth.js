@@ -4,9 +4,9 @@ module.exports = {
       // if (!req.session.isAuthenticated && req.url == "/") {
       req.flash("alertMessage", "Mohon maaf session anda telah habis");
       res.redirect("/");
-      // return;
+      return;
     } else {
-      // req.session.fake = Date.now();
+      req.session.fake = Date.now();
       next();
     }
   },

@@ -3,7 +3,7 @@ var router = express.Router();
 const { index } = require("./controller");
 const { isLogin } = require("../../middleware/auth");
 
-// router.use(isLogin);
+router.use(isLogin);
 router.get("/", index);
 // router.get("/", table);
 // router.post("/respondenDetail", respondenDetail);
