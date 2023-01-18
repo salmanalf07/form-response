@@ -58,7 +58,7 @@
       document.querySelector(`.${rating} .stars-inner`).style.width =
         starPercentageRounded;
       document.querySelector(`.${rating} .stars-text`).textContent =
-        ratings[rating].toFixed(2);
+        ratings[rating].toFixed(2) + ' - ' + starPercentageRounded;
     }
   </script>
 </div>
