@@ -303,4 +303,10 @@
       },
     });
   });
+
+  if (<%= page_name === 'detailQues'%>) {
+    $(':input').attr('readonly','readonly');
+    $('#ruanganId')
+        .attr('disabled', true);
+  }
 </script>

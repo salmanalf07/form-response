@@ -106,7 +106,7 @@ module.exports = {
       // res.json(ResponsAll);
       res.render("form_ques/form", {
         page_title: "layouts",
-        page_name: "table1",
+        page_name: "detailQues",
         ruangan: ruanganall,
         but_send: "false",
         name: ResponsAll.responden.name,
