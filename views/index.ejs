@@ -1,11 +1,19 @@
 <% include ./partials/header %> <%- include ./partials/sidebar %> <%- include
 ./partials/navbar %>
 <!-- Content wrapper -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+  integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
 <div class="content-wrapper">
   <!-- Content -->
   <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row">
-      <% for (let i = 1 ; i <= Object.keys(cart).length ; i++){%>
+      <% let sum = 0; let keyy = Object.keys(cart).length; for (let i = 1 ; i <=
+      Object.keys(cart).length ; i++){ sum += cart[i].quest; %>
       <div class="col-md-6 col-xl-4">
         <div class="card bg-primary text-white mb-3">
           <div class="card-header">Quistionnaire <%= [i] %></div>
@@ -18,8 +26,39 @@
         </div>
       </div>
       <%}%>
+      <div class="col-md-6 col-xl-4">
+        <div class="card bg-primary text-white mb-3">
+          <div class="card-header">Over All Quistionnaire</div>
+          <div class="card-body hotel_b">
+            <h5 class="card-title text-white">
+              <div class="stars-outer">
+                <div class="stars-inner"></div>
+              </div>
+            </h5>
+            <div class="card-text stars-text"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
   <!-- / Content -->
   <%- include ./partials/footer %> <%- include ./partials/js %>
+  <script>
+    const ratings = {
+      hotel_b: <%- sum  / keyy %>,
+    };
+
+    // total number of stars
+    const starTotal = 5;
+
+    for (const rating in ratings) {
+      const starPercentage = (ratings[rating] / starTotal) * 100;
+      const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+      document.querySelector(`.${rating} .stars-inner`).style.width =
+        starPercentageRounded;
+      document.querySelector(`.${rating} .stars-text`).textContent =
+        ratings[rating].toFixed(2);
+    }
+  </script>
 </div>
