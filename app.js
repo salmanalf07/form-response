@@ -19,6 +19,7 @@ var userRouter = require("./app/user/router");
 var eventQuistionnaire = require("./app/quistionnaire/router");
 var ruanganRouter = require("./app/ruangan/router");
 var questionRouter = require("./app/quistionnaire_soal/router");
+var reportQuistionnaire = require("./app/report/router");
 
 var app = express();
 
@@ -61,6 +62,7 @@ app.use("/user", userRouter);
 app.use("/ruangan", ruanganRouter);
 app.use("/eventQuistionnaire", eventQuistionnaire);
 app.use("/question", questionRouter);
+app.use("/reportQuistionnaire", reportQuistionnaire);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

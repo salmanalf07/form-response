@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      table tr td {
+        border: 1px solid black;
+      }
+      .center {
+        text-align: center;
+      }
+      .bold {
+        font-weight: bold;
+      }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  </head>
+  <body>
+    <canvas
+      id="myChart"
+      style="width: 100%; max-width: 600px; margin: 20px auto"
+    ></canvas>
+    <table class="tabbody">
+      <tr class="center bold">
+        <td>No</td>
+        <td>Email</td>
+        <td>Nama</td>
+        <td>Nama Kegiatan</td>
+        <td>Tanggal Kegiatan</td>
+        <td>Ruangan</td>
+        <% if(soal.length){ for(var i = 0; i< soal.length; i++) {%>
+        <td><%= soal[i].ques_detail%></td>
+        <% } }else{ %>
+        <td>-</td>
+        <% } %>
+        <td>Saran anda untuk peningkatan layanan tim IT Univ. Bekasi</td>
+      </tr>
+
+      <% if(data.length){ for(var i = 0; i< data.length; i++) {%>
+      <tr>
+        <td><%= (i+1) %></td>
+        <td><%= data[i].responden['email']%></td>
+        <td><%= data[i].responden['name']%></td>
+        <td><%= data[i].nama_kegiatan%></td>
+        <td class="center">
+          <%= (new Date(data[i].date_kegiatan)).toLocaleDateString()%>
+        </td>
+        <td class="center"><%= data[i].ruangan['nama_ruangan']%></td>
+        <td class="center" id="col1">
+          <p><%= data[i].ques_1%></p>
+        </td>
+        <td class="center" id="col2"><p><%= data[i].ques_2%></p></td>
+        <td class="center" id="col3"><p><%= data[i].ques_3%></p></td>
+        <td class="center" id="col4"><p><%= data[i].ques_4%></p></td>
+        <td class="center" id="col5"><p><%= data[i].ques_5%></p></td>
+        <td class="center" id="col6"><p><%= data[i].ques_6%></p></td>
+        <td><%= data[i].ques_7%></td>
+      </tr>
+      <% } }else{ %>
+      <tr>
+        <td colspan="<%= soal.length + 7 %>" class="center">
+          Data Tidak Ditemukan
+        </td>
+      </tr>
+      <% } %>
+      <tr>
+        <td colspan="6"></td>
+        <% for(var i = 1; i<= soal.length; i++) {%>
+        <td id="ccol<%= i %>" class="center"></td>
+        <% }%>
+        <td></td>
+      </tr>
+    </table>
+  </body>
+  <script src="/assets/js/jquery-3.5.1.js"></script>
+  <script>
+    var cartt = 0;
+    $(document).ready(function () {
+      sumRowVals();
+    });
+    function sumRowVals() {
+      isvalid = true;
+      resetFigs();
+      var rindx = 1;
+      $(".tabbody tr").each(function () {
+        var temp = 0;
+        var cindx = 1;
+        $("p", this).each(function () {
+          var elval = !isNaN($(this).text()) ? parseInt($(this).text()) : 0;
+          var sumcol = $("#ccol" + cindx);
+          $(sumcol).html(
+            parseFloat($(sumcol).html()) + elval / "<%= data.length %>"
+          );
+          temp = temp + elval;
+          cindx++;
+          if (elval > 100) {
+            isvalid = false;
+          }
+          if (parseInt($(sumcol).html()) > 100) {
+            isvalid = false;
+          }
+        });
+        if (rindx != $(".tabbody tr").length) {
+          if (temp != 100) {
+            isvalid = false;
+          }
+          $("#rcol" + rindx).html(temp);
+        }
+        rindx++;
+      });
+      for (let x = 1; x <= "<%=soal.length %>"; x++) {
+        var sumcol = $("#ccol" + x);
+        //console.log(parseFloat($(sumcol).html()) / 5);
+        cartt += (parseFloat($(sumcol).html()) / 5) * 100;
+        $(sumcol).html((parseFloat($(sumcol).html()) / 5) * 100 + "%");
+      }
+      //console.log(cartt / 6);
+      // cart
+      var valuee = cartt / 6;
+      var xValues = [valuee + "%"];
+      var yValues = [valuee, 100 - valuee];
+      var barColors = ["#2ddae6", "#b3b3b3"];
+
+      new Chart("myChart", {
+        type: "pie",
+        data: {
+          labels: xValues,
+          datasets: [
+            {
+              backgroundColor: barColors,
+              data: yValues,
+            },
+          ],
+        },
+        options: {
+          legend: {
+            display: true,
+          },
+          tooltips: {
+            enabled: false,
+          },
+          title: {
+            display: true,
+            text: "Rekap Evaluasi Kegiatan",
+          },
+        },
+      });
+      //end cart
+      return isvalid;
+    }
+    function resetFigs() {
+      $("*[id*=ccol]").each(function () {
+        $(this).html("0");
+      });
+    }
+  </script>
+</html>
