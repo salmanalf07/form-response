@@ -22,6 +22,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   </head>
   <body>
+    <div>
+      <button id="in" type="submit" style="width: 5%">PDF</button>
+      <button id="in" type="submit" style="width: 5%">EXCEL</button>
+    </div>
+
     <canvas
       id="myChart"
       style="width: 100%; max-width: 600px; margin: 20px auto"
@@ -95,7 +100,7 @@
           var elval = !isNaN($(this).text()) ? parseInt($(this).text()) : 0;
           var sumcol = $("#ccol" + cindx);
           $(sumcol).html(
-            parseFloat($(sumcol).html()) + elval / "<%= data.length %>"
+            parseFloat($(sumcol).html()) + (elval / "<%= data.length %>")
           );
           temp = temp + elval;
           cindx++;
