@@ -100,7 +100,7 @@
           var elval = !isNaN($(this).text()) ? parseInt($(this).text()) : 0;
           var sumcol = $("#ccol" + cindx);
           $(sumcol).html(
-            parseFloat($(sumcol).html()) + (elval / "<%= data.length %>")
+            parseFloat($(sumcol).html()) + elval / "<%= data.length %>"
           );
           temp = temp + elval;
           cindx++;
@@ -122,8 +122,10 @@
       for (let x = 1; x <= "<%=soal.length %>"; x++) {
         var sumcol = $("#ccol" + x);
         //console.log(parseFloat($(sumcol).html()) / 5);
-        cartt += (parseFloat($(sumcol).html()) / 5) * 100;
-        $(sumcol).html((parseFloat($(sumcol).html()).toFixed(2) / 5) * 100 + "%");
+        cartt += (parseFloat($(sumcol).html()).toFixed(2) / 5) * 100;
+        $(sumcol).html(
+          (parseFloat($(sumcol).html()).toFixed(2) / 5) * 100 + "%"
+        );
       }
       //console.log(cartt / 6);
       // cart
