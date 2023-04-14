@@ -123,7 +123,7 @@
         var sumcol = $("#ccol" + x);
         //console.log(parseFloat($(sumcol).html()) / 5);
         cartt += (parseFloat($(sumcol).html()) / 5) * 100;
-        // $(sumcol).html((parseFloat($(sumcol).html()) / 5) * 100 + "%");
+        $(sumcol).html((parseFloat($(sumcol).html()).toFixed(2) / 5) * 100 + "%");
       }
       //console.log(cartt / 6);
       // cart
